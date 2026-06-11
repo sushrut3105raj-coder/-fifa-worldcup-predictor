@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <link rel="icon" type="image/png" href="favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tournament Schedule — WC 2026 Predictor</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+[data-theme="dark"]{--gold:#C9A84C;--gold2:#F0C96A;--navy:#0A0A0A;--navy2:#111111;--surface:#141414;--surface2:#1A1A1A;--surface3:#222222;--border:rgba(201,168,76,0.2);--border2:rgba(255,255,255,0.06);--border3:rgba(255,255,255,0.1);--text:#F0EDE8;--text2:rgba(230,225,215,0.75);--text3:rgba(210,205,195,0.48);--nav-bg:rgba(10,10,10,0.97);--cyan:#4CAF50;}
+[data-theme="light"]{--gold:#A0722A;--gold2:#C8901A;--navy:#F5F2EC;--navy2:#EDE9E1;--surface:#FFFFFF;--surface2:#F8F5EF;--surface3:#EDE9E1;--border:rgba(160,114,42,0.25);--border2:rgba(0,0,0,0.07);--border3:rgba(0,0,0,0.11);--text:#1A1208;--text2:rgba(30,20,5,0.72);--text3:rgba(40,28,8,0.46);--nav-bg:rgba(245,242,236,0.97);--cyan:#388E3C;}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--navy);color:var(--text);min-height:100vh}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--navy2)}::-webkit-scrollbar-thumb{background:var(--surface3);border-radius:3px}
+#nav{position:sticky;top:0;z-index:200;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
+.nav-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,#C9A84C,#F0C96A);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.nav-logo-text{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:var(--gold);line-height:1}
+.nav-logo-sub{font-size:9px;color:var(--text3);letter-spacing:2px;text-transform:uppercase}
+.nav-back{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:7px;background:var(--surface2);border:1px solid var(--border2);color:var(--text2);font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;transition:.2s}
+.nav-back:hover{border-color:var(--border);color:var(--text)}
+.theme-toggle{width:36px;height:36px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px}
+.page-hero{background:linear-gradient(180deg,var(--surface2) 0%,var(--navy) 100%);border-bottom:1px solid var(--border2);padding:64px 24px 48px;text-align:center}
+.page-tag{display:inline-block;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:4px 16px;font-size:11px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,8vw,72px);letter-spacing:4px;color:var(--text);margin-bottom:12px}
+.page-title span{color:var(--gold)}
+.page-date{font-size:13px;color:var(--text3)}
+.content-wrap{max-width:800px;margin:0 auto;padding:64px 24px 80px}
+.section-block{margin-bottom:48px}
+.section-heading{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;color:var(--gold);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border2)}
+.section-text{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:14px;font-weight:300}
+.section-text strong{color:var(--text);font-weight:600}
+.info-box{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:20px 24px;margin-bottom:14px;border-left:3px solid var(--gold)}
+.info-box p{font-size:14px;color:var(--text2);line-height:1.7}
+ul.styled{padding-left:0;list-style:none;margin-bottom:14px}
+ul.styled li{font-size:14px;color:var(--text2);line-height:1.8;padding:6px 0;padding-left:20px;position:relative;font-weight:300}
+ul.styled li::before{content:'→';position:absolute;left:0;color:var(--gold);font-size:12px;top:8px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border3),transparent);margin:40px 0}
+footer{background:var(--surface);border-top:1px solid var(--border2);padding:32px 24px;text-align:center}
+footer p{font-size:12px;color:var(--text3)}
+footer a{color:var(--gold);text-decoration:none}
+footer a:hover{text-decoration:underline}
+.footer-links{display:flex;justify-content:center;gap:20px;margin-bottom:12px;flex-wrap:wrap}
+</style>
+</head>
+<body data-theme="dark">
+<nav id="nav">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-icon">🏆</div>
+    <div><div class="nav-logo-text">WC 2026</div><div class="nav-logo-sub">Predictor</div></div>
+  </a>
+  <div style="display:flex;align-items:center;gap:10px">
+    <a class="nav-back" href="index.html">← Back to Predictor</a>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-tag">Tournament Timeline</div>
+  <h1 class="page-title">World Cup <span>Schedule</span></h1>
+  <p class="page-date">Key dates for FIFA World Cup 2026</p>
+</div>
+
+<div class="content-wrap">
+
+  <div class="info-box">
+    <p>
+      <strong>Overview:</strong> FIFA World Cup 2026 will run from June 11 to July 19, 2026, featuring 48 teams and 104 matches across three host nations.
+    </p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-heading">Opening Match</div>
+    <p class="section-text">
+      The tournament begins on June 11, 2026 with the opening match in Mexico City.
+    </p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-heading">Group Stage</div>
+    <p class="section-text">
+      All 48 teams compete in 12 groups. Each team plays three matches to determine qualification for the knockout rounds.
+    </p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-heading">Round of 32</div>
+    <p class="section-text">
+      The top two teams from each group plus the eight best third-placed teams advance to the Round of 32.
+    </p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-heading">Round of 16</div>
+    <p class="section-text">
+      The remaining teams compete for places in the quarter-finals.
+    </p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-heading">Quarter-finals</div>
+    <p class="section-text">
+      The final eight teams battle for a place in the semi-finals.
+    </p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-heading">Semi-finals</div>
+    <p class="section-text">
+      Four teams remain, with the winners advancing to the World Cup Final.
+    </p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-heading">Third-Place Match</div>
+    <p class="section-text">
+      The losing semi-finalists compete for third place.
+    </p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-heading">World Cup Final</div>
+    <p class="section-text">
+      The FIFA World Cup 2026 Final will take place on July 19, 2026 and crown the world champion.
+    </p>
+  </div>
+
+  <div class="info-box">
+    <p>
+      Ready to predict the tournament?
+      <a href="index.html" style="color:var(--gold);font-weight:600;">
+        Launch the Predictor →
+      </a>
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="format-guide.html">Format Guide</a>
+    <a href="host-cities.html">Host Cities</a>
+    <a href="schedule.html">Schedule</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms & Conditions</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p>© 2026 WC 2026 Predictor · Fan-made project · Not affiliated with FIFA</p>
+</footer>
+
+<script>
+let isDark=true;
+function toggleTheme(){
+  isDark=!isDark;
+  document.body.setAttribute('data-theme',isDark?'dark':'light');
+  document.querySelector('.theme-toggle').textContent=isDark?'🌙':'☀️';
+  localStorage.setItem('wc_theme',isDark?'dark':'light');
+}
+const saved=localStorage.getItem('wc_theme');
+if(saved==='light'){isDark=false;document.body.setAttribute('data-theme','light');document.querySelector('.theme-toggle').textContent='☀️';}
+</script>
+</body>
+</html>
